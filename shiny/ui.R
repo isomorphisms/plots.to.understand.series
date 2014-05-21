@@ -45,7 +45,10 @@ br(),
 
 # Show a plot of the generated distribution
 mainPanel(
+    h2("Wegert plot (&Copf;)"),
     plotOutput("Wegert")
+    h2("wiggly plot (&Ropf;)"),
+    plotOutput("wiggly")
     )
 )
 ))
