@@ -21,12 +21,12 @@ shinyServer( function(input,output) {
 
 
 	reactive({
-		zoom<-input$z,
-		chroma<-input$c,
+		zoom<-exp(input$z)
+		chroma<-input$c
 
 
 
-	plat(22*Z, Airy, c=chroma)
+	plat(zoom*Z, Airy, c=chroma)
 
 		})#end reactive
 
