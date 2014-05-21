@@ -1,4 +1,3 @@
-
 #ℂ to pull back onto
 i = complex(imaginary=1)
 M = matrix(1:100,100,100)	#grid
