@@ -30,18 +30,35 @@ shinyServer( function(input,output) {
 
     output$Wegert <- renderPlot({
 
-	reactive({
+#	reactive({
 	#read in values from user
 		zoom<-exp(input$z)
 		chroma<-input$c
-		select.a.function(input$fun)
+		#select.a.function(input$fun)
 		       
 	#make complex output
-	plat(zoom*Z, fun, c=chroma)
+	plat(zoom*Z, Airy, c=chroma)
 
 
-		})#end reactive
+#		})#end reactive
 		})#end render
+
+
+
+    output$wiggly <- renderPlot({
+
+#	reactive({
+	#read in values from user
+		zoom<-exp(input$z)
+		#select.a.function(input$fun)
+		       
+	#make real output
+	plot(polynomial.222.11, -zoom, zoom, lwd=3, col=rgb(.1,.1,.1,.9) )
+
+
+#		})#end reactive
+		})#end render
+
 
 
 #    output$wiggly <- renderPlot({
