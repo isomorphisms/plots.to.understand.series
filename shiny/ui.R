@@ -44,8 +44,8 @@ br(),
 
 # Show a plot of the generated distribution
 mainPanel(
-selectInput("fun", "Choose a function:", 
-	      choices = c("a polynomial", "another polynomial", "a ratio of polynomials", "The Airy function", "Riemann zeta, + approximation", "Riemann zeta, × approximation")),
+selectInput("fun", "Choose a pre-defined function:", 
+	      choices = c("a polynomial", "another polynomial", "a ratio of polynomials", "The Airy function", "Riemann zeta, ∫ approximation", "hyperbolic cosine")),
 br(),
     h3(textOutput("formula")),
     h2("Wegert plot (ℂ)"),

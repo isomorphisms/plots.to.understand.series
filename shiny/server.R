@@ -12,8 +12,7 @@ select.a.function = function(input=input$fun)  {
 	   "another polynomial"=polynomial.2,
 	   "a ratio of polynomials"=polynomial.1.2,
 	   "The Airy function"=Airy,
-	   "Riemann zeta, + approximation"=Riemann.Zeta.Plus.Side ,
-	   "Riemann zeta, × approximation"=Riemann.Zeta.Product.Side
+	   "Riemann zeta, ∫ approximation"=zeta
 	   )
 
 }
@@ -37,8 +36,8 @@ fun<<-    switch(input$fun,
 	   "another polynomial"=polynomial.2,
 	   "a ratio of polynomials"=polynomial.1.2,
 	   "The Airy function"=Airy,
-	   "Riemann zeta, + approximation"=Riemann.Zeta.Plus.Side ,
-	   "Riemann zeta, × approximation"=Riemann.Zeta.Product.Side
+	   "Riemann zeta, ∫ approximation"=zeta,
+	   "hyperbolic cosine"=cosh
 	   )
 	
 #fun<<-Airy
