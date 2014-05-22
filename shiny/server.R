@@ -1,4 +1,4 @@
-#pre stuff
+#MATH STUFF
 source("wegert setup.R")
 
 
@@ -8,12 +8,12 @@ source("wegert setup.R")
 
 select.a.function = function(input=input$fun)  {
     switch(input,
-	   "a polynomial"<<-polynomial.1,
-	   "another polynomial"<<-polynomial.2,
-	   "a ratio of polynomials"<<-polynomial.1.2,
-	   "The Airy function"<<-Airy,
-	   "Riemann zeta, + approximation"<<-Riemann.Zeta.Plus.Side ,
-	   "Riemann zeta, × approximation"<<-Riemann.Zeta.Product.Side
+	   "a polynomial"=polynomial.1,
+	   "another polynomial"=polynomial.2,
+	   "a ratio of polynomials"=polynomial.1.2,
+	   "The Airy function"=Airy,
+	   "Riemann zeta, + approximation"=Riemann.Zeta.Plus.Side ,
+	   "Riemann zeta, × approximation"=Riemann.Zeta.Product.Side
 	   )
 
 }
@@ -28,53 +28,45 @@ library(shiny)
 
 shinyServer( function(input,output) {
 
+
+#read in user input knobs
+control.knobs <- reactive({
+
+fun<<-    switch(input$fun,
+	   "a polynomial"=polynomial.1,
+	   "another polynomial"=polynomial.2,
+	   "a ratio of polynomials"=polynomial.1.2,
+	   "The Airy function"=Airy,
+	   "Riemann zeta, + approximation"=Riemann.Zeta.Plus.Side ,
+	   "Riemann zeta, × approximation"=Riemann.Zeta.Product.Side
+	   )
+	
+#fun<<-Airy
+zoom<<-exp(input$z)
+chroma<<-input$c
+lightness<<-input$l
+
+		})#end reactive
+
+	#left brain: spit out the formula
+output$formula = renderText({ paste("formula for", format(fun)[1], "is:", format(fun)[2]) })
+
+
+    #make complex output
     output$Wegert <- renderPlot({
+	control.knobs()
 
-#	reactive({
-	#read in values from user
-		zoom<-exp(input$z)
-		chroma<-input$c
-		#select.a.function(input$fun)
-		       
-	#make complex output
-	plat(zoom*Z, Airy, c=chroma)
+	plat(zoom*Z, fun, c=chroma, lightbase=lightness)
 
-
-#		})#end reactive
 		})#end render
 
 
 
+    #make real output
     output$wiggly <- renderPlot({
+	control.knobs()
 
-#	reactive({
-	#read in values from user
-		zoom<-exp(input$z)
-		#select.a.function(input$fun)
-		       
-	#make real output
-	plot(polynomial.222.11, -zoom, zoom, lwd=3, col=rgb(.1,.1,.1,.9) )
+	plot(fun, -2*zoom, 2*zoom, lwd=3, col=rgb(.1,.1,.1,.9) )
 
-
-#		})#end reactive
 		})#end render
-
-
-
-#    output$wiggly <- renderPlot({
-#
-#	reactive({
-#	#read in values from user
-#		zoom<-exp(input$z)
-#		select.a.function(input$fun)
-#		       
-#
-#	#make real output
-#	plot(fun, -zoom,zoom)
-#
-#
-#	)}#end reactive
-#
-    #    })#end render
-
 })#end server

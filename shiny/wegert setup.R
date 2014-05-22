@@ -23,10 +23,10 @@ lev = function(x) ceiling(log(x)) - log(x)	#IMPORTANT (rounding)
 m = function(z) lev(Mod(z))
 
 #put it all together, accept arguments
-plat = function(domain,FUN, c=35, cex=1.5, pch=46) {
+plat = function(domain,FUN, c=35, cex=1.5, pch=46, lightbase=70) {
     plot( domain, col=hcl(
 			  h=arg(FUN(domain)),	#main plot
-			  l=70+m(domain)
+			  l=lightbase+m(domain)
 			  ),
 	 pch=pch,
 	 cex=cex,
