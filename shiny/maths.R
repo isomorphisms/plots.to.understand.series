@@ -4,6 +4,7 @@ require(sfsmisc)	#has primes
 Riemann.Zeta.Product.Side = function(x,n=10^5) prod( 1-primes(n)^x )
 Dilogarithm = function(M) integrate( function(t) -log(1-t)/t, 0, M)
 Airy = function(x) exp(-2/3*x^1.5) / 2 / sqrt(pi) / x^.25
+zeta = function(x,M=1e9) (1-x)*( M**(1-x) - 1)
 
 polynomial.1 = function(x) x^3 + 5*x^2 - 2*x+i
 polynomial.2 = function(x) x^4/14 + x^3/13
